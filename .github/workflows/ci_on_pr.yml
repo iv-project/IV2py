@@ -37,7 +37,7 @@ jobs:
           - {os: windows-2022, compiler: msvc-cpp20-debug}
     steps:
       - name: Standard IV-project testing
-        uses: iv-project/IVaction@v10.6
+        uses: iv-project/IVaction@v10.9
         with:
           compiler: ${{ matrix.compiler }}
           threads: 2
