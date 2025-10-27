@@ -86,7 +86,7 @@ jobs:
           source env.sh
           cd repo
           python -m cibuildwheel --output-dir wheelhouse
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: binaries-${{ github.sha }}-${{ matrix.os }}
           path: ./repo/wheelhouse/*.whl
