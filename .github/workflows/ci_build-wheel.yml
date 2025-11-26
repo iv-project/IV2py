@@ -26,6 +26,24 @@ jobs:
         run: |
            echo \"${GITHUB_ACTION}\" \"${GITHUB_REF}\" \"${GITHUB_BASE_REF}\" \"${GITHUB_RUN_NUMBER}\"
            echo "" > env.sh
+      - name: Install tools (linux)
+        if: ${{ matrix.os == 'ubuntu-22.04' }}
+        shell: bash
+        run: |
+           echo "Setup for " ${{ inputs.compiler }}
+           echo "export CXX_STANDARD=cpp20" >> env.sh
+           echo "export BUILD_TYPE=Release" >> env.sh
+           echo "export CMAKE_CXX_FLAGS=" >> env.sh
+           echo "export CMAKE_C_FLAGS=" >> env.sh
+           NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+           sudo apt-get update -y
+           sudo apt-get install -y build-essential
+           brew update
+           brew upgrade
+           echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' > env.sh
+           brew update-reset
+           brew install --force-bottle --overwrite cmake pkg-config bash
       - name: Install tools (macos-15-intel)
         if: ${{ matrix.os == 'macos-15-intel' }}
         shell: bash
