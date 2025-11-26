@@ -37,14 +37,14 @@ jobs:
           - {os: windows-2022, compiler: msvc-cpp20-debug}
     steps:
       - name: Standard IV-project testing
-        uses: iv-project/IVaction@v10.9
+        uses: iv-project/IVaction@v11.0
         with:
           compiler: ${{ matrix.compiler }}
           threads: 2
           cmake_flags: ${{ matrix.cmake_flags }}
           cmake_c_flags: ${{ matrix.cmake_c_flags }}
           cmake_cxx_flags: ${{ matrix.cmake_cxx_flags }}
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: 'pypy3.8'
       - name: Install package in Python with testing dependencies
