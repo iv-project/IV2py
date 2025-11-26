@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-22.04, windows-2022, macos-13, macos-14]
+        os: [ubuntu-22.04, windows-2022, macos-15-intel, macos-14]
 
     steps:
       - uses: actions/checkout@v6
@@ -26,8 +26,8 @@ jobs:
         run: |
            echo \"${GITHUB_ACTION}\" \"${GITHUB_REF}\" \"${GITHUB_BASE_REF}\" \"${GITHUB_RUN_NUMBER}\"
            echo "" > env.sh
-      - name: Install tools (macos-13)
-        if: ${{ matrix.os == 'macos-13' }}
+      - name: Install tools (macos-15-intel)
+        if: ${{ matrix.os == 'macos-15-intel' }}
         shell: bash
         run: |
            echo 'eval "$(brew shellenv)"' > env.sh
@@ -41,10 +41,10 @@ jobs:
 
            echo "export MACOSX_DEPLOYMENT_TARGET=13.6" >> env.sh
 
-           brew install --force-bottle llvm@17
-           brew link -f llvm@17
+           brew install --force-bottle llvm@20
+           brew link -f llvm@20
            echo "export CXX=clang++" >> env.sh
-           INSTALL_PREFIX=$(brew --prefix llvm@17)
+           INSTALL_PREFIX=$(brew --prefix llvm@20)
            echo "export PATH=\"${INSTALL_PREFIX}/bin:$PATH\"" >> env.sh
            echo "export LDFLAGS=\"-L${INSTALL_PREFIX}/lib/c++ -Wl,-rpath,${INSTALL_PREFIX}/lib/c++\"" >> env.sh
       - name: Install tools (macos-14)
@@ -62,11 +62,11 @@ jobs:
 
            echo "export MACOSX_DEPLOYMENT_TARGET=14.0" >> env.sh
 
-           brew install --force-bottle llvm@17
-           brew link -f llvm@17
+           brew install --force-bottle llvm@20
+           brew link -f llvm@20
            echo "export CXX=clang++" >> env.sh
            echo "export CC=clang" >> env.sh
-           INSTALL_PREFIX=$(brew --prefix llvm@17)
+           INSTALL_PREFIX=$(brew --prefix llvm@20)
            echo "export PATH=\"${INSTALL_PREFIX}/bin:$PATH\"" >> env.sh
            echo "export LDFLAGS=\"-L${INSTALL_PREFIX}/lib/c++ -Wl,-rpath,${INSTALL_PREFIX}/lib/c++\"" >> env.sh
       - name: Install tools (win)
