@@ -24,7 +24,7 @@ endif()
 
 find_package(OpenMP QUIET)
 include(cmake/CPM.cmake)
-CPMAddPackage("gh:SGSSGene/cpm.dependencies@1.0.0")
+CPMAddPackage("gh:SGSSGene/cpm.dependencies@1.0.2")
 CPMLoadDependenciesFile("${CMAKE_CURRENT_SOURCE_DIR}/cpm.dependencies")
 
 add_subdirectory(src/iv2py)

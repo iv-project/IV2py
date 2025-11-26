@@ -3,17 +3,17 @@
   "packages": [
     {
       "name": "fmindex-collection",
-      "version": "0.4.4",
-      "github_repository": "SGSSGene/fmindex-collection",
+      "version": "1.4.0",
+      "github_repository": "SGSSGene/fmindex-collection"
     },
     {
       "name": "ivio",
-      "version": "0.4.2",
+      "version": "1.2.0",
       "github_repository": "iv-project/IVio"
     },
     {
       "name": "ivsigma",
-      "version": "0.2.1",
+      "version": "1.0.1",
       "github_repository": "iv-project/IVSigma"
     },
     {
@@ -28,9 +28,9 @@
       ]
     },
     {
-        "name": "pybind11",
-        "version": "2.13.6",
-        "github_repository": "pybind/pybind11"
+      "name": "pybind11",
+      "version": "3.0.1",
+      "github_repository": "pybind/pybind11"
     }
   ]
 }
