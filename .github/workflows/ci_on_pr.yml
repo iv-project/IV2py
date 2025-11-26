@@ -45,12 +45,15 @@ jobs:
           cmake_c_flags: ${{ matrix.cmake_c_flags }}
           cmake_cxx_flags: ${{ matrix.cmake_cxx_flags }}
       - uses: actions/setup-python@v6
+        if: ${{ matrix.compiler != 'spdx_license_lint' }}
         with:
           python-version: 'pypy3.8'
       - name: Install package in Python with testing dependencies
+        if: ${{ matrix.compiler != 'spdx_license_lint' }}
         working-directory: ./repo
         run: pip install '.[test]'
       - name: Test in Python
+        if: ${{ matrix.compiler != 'spdx_license_lint' }}
         run: pytest ./repo/tests/
   final:
     runs-on: ubuntu-22.04
