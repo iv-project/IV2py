@@ -29,6 +29,3 @@ def test_fasta_write(tmp_path):
     for record in iv.fasta.reader(file=fasta_path):
         assert record.id == "1"
         assert record.seq == "ATG"
-
-
-
