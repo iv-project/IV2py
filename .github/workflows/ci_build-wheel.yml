@@ -9,11 +9,16 @@ on:
       - 'main'
   pull_request:
 
+concurrency:
+  group: ci-wheel-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-22.04, windows-2022, macos-15-intel, macos-14]
 
@@ -57,7 +62,7 @@ jobs:
            brew update-reset
            brew install --force-bottle --overwrite cmake pkg-config bash
 
-           echo "export MACOSX_DEPLOYMENT_TARGET=13.6" >> env.sh
+           echo "export MACOSX_DEPLOYMENT_TARGET=15.0" >> env.sh
 
            brew install --force-bottle llvm@20
            brew link -f llvm@20
