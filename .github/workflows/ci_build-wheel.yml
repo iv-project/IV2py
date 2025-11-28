@@ -99,8 +99,10 @@ jobs:
         shell: bash
         run: |
           source env.sh
+          cmake --version
+          which cmake || true
           cd repo
-          python -m pip install cibuildwheel==2.21.3
+          python -m pip install cibuildwheel==2.23.3
       - name: Build wheels
         shell: bash
         run: |
