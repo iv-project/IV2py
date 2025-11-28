@@ -64,8 +64,8 @@ jobs:
 
            echo "export MACOSX_DEPLOYMENT_TARGET=15.0" >> env.sh
 
-           brew install --force-bottle llvm@20
-           brew link -f llvm@20
+           brew install --force-bottle llvm@20 lld@20
+           brew link -f llvm@20 lld@20
            echo "export CXX=clang++" >> env.sh
            INSTALL_PREFIX=$(brew --prefix llvm@20)
            echo "export PATH=\"${INSTALL_PREFIX}/bin:$PATH\"" >> env.sh
@@ -85,8 +85,8 @@ jobs:
 
            echo "export MACOSX_DEPLOYMENT_TARGET=14.0" >> env.sh
 
-           brew install --force-bottle llvm@20
-           brew link -f llvm@20
+           brew install --force-bottle llvm@20 lld@20
+           brew link -f llvm@20 lld@20
            echo "export CXX=clang++" >> env.sh
            echo "export CC=clang" >> env.sh
            INSTALL_PREFIX=$(brew --prefix llvm@20)
