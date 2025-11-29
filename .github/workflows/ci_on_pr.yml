@@ -42,7 +42,7 @@ jobs:
           - {os: windows-2022,   compiler: msvc-cpp20-debug-pytest}
     steps:
       - name: Standard IV-project testing
-        uses: iv-project/IVaction@v11.0
+        uses: iv-project/IVaction@v11.1
         with:
           compiler: ${{ matrix.compiler }}
           threads: 2
