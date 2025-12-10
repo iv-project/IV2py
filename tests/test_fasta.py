@@ -12,6 +12,13 @@ def test_fasta_read(tmp_path):
             f.write(f">{record}\n")
             f.write(records[record]+"\n")
 
+    # read with a 'with-statement'
+    with iv.fasta.reader(file=fasta_path) as reader:
+        for i, record in enumerate(reader):
+            assert record.seq == records[str(record.id)]
+            assert str(i+1) == record.id
+
+    # read plain old way
     for i, record in enumerate(iv.fasta.reader(file=fasta_path)):
         assert record.seq == records[str(record.id)]
         assert str(i+1) == record.id
@@ -26,9 +33,7 @@ def test_fasta_write(tmp_path):
     writer.close()
     assert fasta_path.is_file() is True
 
-    for record in iv.fasta.reader(file=fasta_path):
-        assert record.id == "1"
-        assert record.seq == "ATG"
-
-
-
+    with iv.fasta.reader(file=fasta_path) as reader:
+        for record in reader:
+            assert record.id == "1"
+            assert record.seq == "ATG"

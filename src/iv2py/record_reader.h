@@ -22,6 +22,6 @@ struct record_reader {
             return v;
         });
     }
-    decltype(init(reader_)) view = init(reader_);
+    using record_reader_view = decltype(init(reader_));
+    record_reader_view view = init(reader_);
 };
-

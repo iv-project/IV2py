@@ -14,7 +14,6 @@
 #include <cereal/types/vector.hpp>
 
 namespace py = pybind11;
-namespace fmc = fmindex_collection;
 
 void init_fmindex_mod(py::module& mod) {
 //    auto mod = parent_mod.def_submodule("fmindex");

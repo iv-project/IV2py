@@ -6,7 +6,7 @@ import pytest
 import iv2py as iv
 
 
-@pytest.mark.parametrize("reference,pattern,expected", [(["AACCGGTT", "ACGT"], "CG", [(0, 3), (0, 10)])])
+@pytest.mark.parametrize("reference,pattern,expected", [(["AACCGGTT", "ACGT"], "CG", [(0, 3), (1, 1)])])
 def test_load(tmp_path, reference, pattern, expected):
     index_path = tmp_path / "myindex.idx"
     index = iv.fmindex(reference=reference, samplingRate=16)
@@ -19,15 +19,15 @@ def test_load(tmp_path, reference, pattern, expected):
     index_2 = iv.fmindex(index_path)
 
     # if we can still get valid search results, the index should be okay
-    assert index_2.search(pattern) == expected 
+    assert index_2.search(pattern) == expected
 
-@pytest.mark.parametrize("reference,pattern,expected", [(["AACCGGTT", "ACGT"], "GGT", [(0, 5), (0, 10), (0, 4)])])
+@pytest.mark.parametrize("reference,pattern,expected", [(["AACCGGTT", "ACGT"], "GGT", [(0, 5), (1, 1), (0, 4)])])
 def test_search_mismatches(reference, pattern, expected):
     index = iv.fmindex(reference=reference, samplingRate=16)
 
     assert index.search(pattern, k=1) == expected
 
-@pytest.mark.parametrize("reference,pattern,expected", [(["AACCGGTT", "ACGT"], "CG", [(0, 3), (0, 10)])])
+@pytest.mark.parametrize("reference,pattern,expected", [(["AACCGGTT", "ACGT"], "CG", [(0, 3), (1, 1)])])
 def test_search(reference, pattern, expected):
     index = iv.fmindex(reference=reference, samplingRate=16)
 

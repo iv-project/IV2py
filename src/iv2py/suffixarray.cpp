@@ -13,10 +13,9 @@
 #include <cereal/types/vector.hpp>
 
 namespace py = pybind11;
-namespace fmc = fmindex_collection;
 
 void init_suffixarray_mod(py::module& mod) {
     mod.def("create_suffixarray", [](std::string reference, int threadNbr) {
-        return fmindex_collection::createSA64(std::span{reinterpret_cast<uint8_t const*>(reference.data()), reference.size()}, threadNbr);
+        return fmc::createSA64(std::span{reinterpret_cast<uint8_t const*>(reference.data()), reference.size()}, threadNbr);
     }, py::arg("reference"), py::arg("threadNbr") = 1);
 }

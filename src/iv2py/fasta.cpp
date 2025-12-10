@@ -31,6 +31,15 @@ void init_fasta_mod(py::module& parent_mod) {
         .def(py::init([](std::filesystem::path const& path) {
             return std::make_unique<record_reader<ivio::fasta::reader>>(path);
         }), py::arg("file"))
+        .def("__enter__", [](record_reader<ivio::fasta::reader>& r) -> record_reader<ivio::fasta::reader>& {
+            return r;
+        })
+        .def("__exit__", [](record_reader<ivio::fasta::reader>& r, py::handle exc_type, py::handle exc_value, py::handle traceback) {
+            (void)exc_type;
+            (void)exc_value;
+            (void)traceback;
+            r.reader_.close();
+        })
         .def("__iter__", [](record_reader<ivio::fasta::reader>& r) {
             return py::make_iterator(r.view.begin(), r.view.end());
         }, py::keep_alive<0, 1>())
