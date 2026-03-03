@@ -8,12 +8,12 @@
     },
     {
       "name": "ivio",
-      "version": "1.2.0",
+      "version": "1.2.2",
       "github_repository": "iv-project/IVio"
     },
     {
       "name": "ivsigma",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "github_repository": "iv-project/IVSigma"
     },
     {
@@ -29,7 +29,7 @@
     },
     {
       "name": "pybind11",
-      "version": "3.0.1",
+      "version": "3.0.2",
       "github_repository": "pybind/pybind11"
     }
   ]
